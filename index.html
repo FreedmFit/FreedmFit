@@ -256,17 +256,100 @@
         </div>
     </section>
 
-    <!-- Instagram Feed Section -->
+       <!-- Instagram Feed Section - Improved -->
     <section class="instagram-section" id="social">
         <div class="container">
-            <h2>Follow Along</h2>
-            <p>Check out my Instagram <a href="https://www.instagram.com/freedmfit/" target="_blank">@freedmfit</a> for daily motivation, tips, and client transformations.</p>
-            <div id="instagram-feed" class="instagram-feed">
-                <!-- Instagram feed will be dynamically loaded here -->
-                <div class="instagram-placeholder">Loading feed...</div>
+            <div class="section-title">
+                <h2>Follow Along</h2>
+                <p>Get daily motivation, workout tips, and transformation stories on Instagram</p>
             </div>
+            
+            <div class="instagram-header">
+                <div class="instagram-profile">
+                    <div class="instagram-avatar">
+                        <img src="images/nova-profile.jpg" alt="Nova FreedomFit" class="avatar-img">
+                    </div>
+                    <div class="instagram-handle">
+                        <h3>@freedmfit</h3>
+                        <p><span id="follower-count">2.4K</span> followers</p>
+                    </div>
+                </div>
+                <a href="https://www.instagram.com/freedmfit/" target="_blank" class="btn btn-instagram">
+                    <i class="fab fa-instagram"></i> Follow
+                </a>
+            </div>
+            
+            <div id="instagram-feed" class="instagram-feed">
+                <!-- Static fallback grid that will be replaced by JS -->
+                <div class="instagram-item">
+                    <img src="images/before-after1.jpg" alt="Transformation Tuesday" loading="lazy">
+                    <div class="instagram-overlay">
+                        <a href="https://www.instagram.com/freedmfit/" target="_blank" class="instagram-link">
+                            <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
+                    <div class="instagram-info">
+                        <span><i class="fas fa-heart"></i> 127</span>
+                        <span><i class="fas fa-comment"></i> 14</span>
+                    </div>
+                </div>
+                
+                <div class="instagram-item">
+                    <img src="images/before-after2.jpg" alt="Client Results" loading="lazy">
+                    <div class="instagram-overlay">
+                        <a href="https://www.instagram.com/freedmfit/" target="_blank" class="instagram-link">
+                            <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
+                    <div class="instagram-info">
+                        <span><i class="fas fa-heart"></i> 98</span>
+                        <span><i class="fas fa-comment"></i> 8</span>
+                    </div>
+                </div>
+                
+                <div class="instagram-item">
+                    <img src="images/before-after3.jpg" alt="Transformation Story" loading="lazy">
+                    <div class="instagram-overlay">
+                        <a href="https://www.instagram.com/freedmfit/" target="_blank" class="instagram-link">
+                            <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
+                    <div class="instagram-info">
+                        <span><i class="fas fa-heart"></i> 156</span>
+                        <span><i class="fas fa-comment"></i> 23</span>
+                    </div>
+                </div>
+                
+                <div class="instagram-item">
+                    <img src="images/nova-profile.jpg" alt="Workout Tips" loading="lazy">
+                    <div class="instagram-overlay">
+                        <a href="https://www.instagram.com/freedmfit/" target="_blank" class="instagram-link">
+                            <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
+                    <div class="instagram-info">
+                        <span><i class="fas fa-heart"></i> 84</span>
+                        <span><i class="fas fa-comment"></i> 7</span>
+                    </div>
+                </div>
+                
+                <!-- Loading state (will be shown/hidden by JS) -->
+                <div class="instagram-loader">
+                    <div class="loader-spinner"></div>
+                    <p>Loading latest posts...</p>
+                </div>
+                
+                <!-- Error state (will be shown/hidden by JS) -->
+                <div class="instagram-error" style="display: none;">
+                    <i class="fas fa-exclamation-circle"></i>
+                    <p>Couldn't load Instagram feed. <a href="https://www.instagram.com/freedmfit/" target="_blank">View directly on Instagram</a>.</p>
+                </div>
+            </div>
+            
             <div class="instagram-cta">
-                <a href="https://www.instagram.com/freedmfit/" target="_blank" class="btn">View More on Instagram</a>
+                <a href="https://www.instagram.com/freedmfit/" target="_blank" class="btn">
+                    <i class="fab fa-instagram"></i> View More on Instagram
+                </a>
             </div>
         </div>
     </section>
