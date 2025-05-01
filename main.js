@@ -139,24 +139,35 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Before/After image hover effects for transformation gallery
-    const beforeAfterContainers = document.querySelectorAll('.before-after');
+    // Video player functionality
+    const videoContainers = document.querySelectorAll('.video-container');
     
-    beforeAfterContainers.forEach(container => {
-        // For mobile users, add a click handler to toggle between before/after
-        container.addEventListener('click', function() {
-            const beforeImg = this.querySelector('.before');
-            const afterImg = this.querySelector('.after');
+    videoContainers.forEach(container => {
+        const video = container.querySelector('video');
+        const overlay = container.querySelector('.video-overlay');
+        
+        if (video && overlay) {
+            // Play video when clicking on the overlay
+            overlay.addEventListener('click', function() {
+                video.play();
+                overlay.style.opacity = '0';
+            });
             
-            // Check if we're already showing the "after" image
-            if (window.getComputedStyle(afterImg).opacity === '0') {
-                beforeImg.style.opacity = '0';
-                afterImg.style.opacity = '1';
-            } else {
-                beforeImg.style.opacity = '1';
-                afterImg.style.opacity = '0';
-            }
-        });
+            // Show overlay when video is paused
+            video.addEventListener('pause', function() {
+                overlay.style.opacity = '1';
+            });
+            
+            // Hide overlay when video is playing
+            video.addEventListener('play', function() {
+                overlay.style.opacity = '0';
+            });
+            
+            // Reset overlay when video ends
+            video.addEventListener('ended', function() {
+                overlay.style.opacity = '1';
+            });
+        }
     });
 
     // Lazy loading for images (optional for better performance)
@@ -182,14 +193,4 @@ document.addEventListener('DOMContentLoaded', function() {
             const elementTop = element.getBoundingClientRect().top;
             
             if (elementTop < triggerBottom) {
-                element.classList.add('visible');
-            }
-        });
-    }
-    
-    // Run once on page load
-    checkElements();
-    
-    // Run on scroll
-    window.addEventListener('scroll', checkElements);
-});
+                element.
