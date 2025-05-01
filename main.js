@@ -37,10 +37,12 @@ document.addEventListener('DOMContentLoaded', function() {
     
     menuLinks.forEach(link => {
         link.addEventListener('click', function() {
-            hamburger.classList.remove('active');
-            menu.classList.remove('active');
-            hamburger.setAttribute('aria-expanded', 'false');
-            document.body.style.overflow = '';
+            if (hamburger && menu) {
+                hamburger.classList.remove('active');
+                menu.classList.remove('active');
+                hamburger.setAttribute('aria-expanded', 'false');
+                document.body.style.overflow = '';
+            }
         });
     });
 
@@ -209,6 +211,72 @@ document.addEventListener('DOMContentLoaded', function() {
     };
     
     testimonialSlider.init();
+
+    // Before-After Slider functionality
+    const beforeAfterContainers = document.querySelectorAll('.before-after-container');
+
+    beforeAfterContainers.forEach(container => {
+        if (!container) return;
+        
+        const beforeContainer = container.querySelector('.before-img-container');
+        const sliderHandle = container.querySelector('.slider-handle');
+        
+        if (!beforeContainer || !sliderHandle) return;
+        
+        // Initial position (50%)
+        let sliderPosition = 50;
+        
+        function updateSliderPosition(x) {
+            const containerRect = container.getBoundingClientRect();
+            const containerWidth = containerRect.width;
+            const offsetX = x - containerRect.left;
+            
+            // Calculate position as percentage
+            sliderPosition = Math.max(0, Math.min(100, (offsetX / containerWidth) * 100));
+            
+            // Update UI
+            beforeContainer.style.width = `${sliderPosition}%`;
+            sliderHandle.style.left = `${sliderPosition}%`;
+        }
+        
+        // Mouse events
+        container.addEventListener('mousedown', e => {
+            e.preventDefault();
+            updateSliderPosition(e.clientX);
+            
+            function onMouseMove(e) {
+                updateSliderPosition(e.clientX);
+            }
+            
+            function onMouseUp() {
+                document.removeEventListener('mousemove', onMouseMove);
+                document.removeEventListener('mouseup', onMouseUp);
+            }
+            
+            document.addEventListener('mousemove', onMouseMove);
+            document.addEventListener('mouseup', onMouseUp);
+        });
+        
+        // Touch events for mobile
+        container.addEventListener('touchstart', e => {
+            e.preventDefault();
+            const touch = e.touches[0];
+            updateSliderPosition(touch.clientX);
+            
+            function onTouchMove(e) {
+                const touch = e.touches[0];
+                updateSliderPosition(touch.clientX);
+            }
+            
+            function onTouchEnd() {
+                document.removeEventListener('touchmove', onTouchMove);
+                document.removeEventListener('touchend', onTouchEnd);
+            }
+            
+            document.addEventListener('touchmove', onTouchMove);
+            document.addEventListener('touchend', onTouchEnd);
+        });
+    });
 
     // Improved Back to Top Button
     const backToTopBtn = document.querySelector('.back-to-top');
